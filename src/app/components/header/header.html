@@ -1,0 +1,17 @@
+<header class="flex justify-between p-8 h-20 items-center shadow-md">
+    <h1 class="font-bold text-3xl text-zinc-800">Play <span class="text-indigo-600">Filmes</span></h1>
+
+    <nav class="flex gap-10" id="nav">
+        @for(link of links(); track link.id){
+            <a href="#"
+            [id]="link.id" 
+            (click)="linkFocus(link.id)"
+            class="border-b-2"
+            [ngClass]="{
+                'border-indigo-500 text-gray-900': activeLink() === link.id,
+                'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700': 
+                activeLink() !== link.id
+            }"> {{link.name}} </a>
+        }
+    </nav>
+</header>

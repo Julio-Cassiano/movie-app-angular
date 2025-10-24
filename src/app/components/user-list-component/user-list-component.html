@@ -1,0 +1,51 @@
+<div class="flex flex-col p-8">
+    <div class="flex justify-between mb-12">
+        <h1 class="text-shadow-neutral-900 font-medium text-2xl md:text-3xl lg:text-4xl">Gerenciamento de usuário</h1>
+        <button>vou ajeitar depois</button>
+    </div>
+    @if(users().length > 0){
+    <div class="bg-white shadow-md rounded-xl">
+        <table class="w-full divide-y divide-gray-200">
+            <thead class="bg-gray-100">
+                <tr class="text-gray-500 text-left">
+                    <th scope="col" class="font-medium px-4 py-2">NOME</th>
+                    <th scope="col" class="font-medium px-4 py-2">NOME DE USUÁRIO</th>
+                    <th scope="col" class="font-medium px-4 py-2">E-MAIL</th>
+                    <th scope="col" class="font-medium px-4 py-2">DATA DE NASCIMENTO</th>
+                    <th scope="col" class="text-right font-medium px-4 py-2">AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                @for(user of users(); track user.id){
+                    <tr class="hover:bg-gray-100">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-gray-900">{{ user.name }}</div>
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-700">{{ user.username }}</div>
+                        </td>
+                        
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-700">{{ user.email }}</div>
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-700">{{ user.birthDate | date: 'dd/MM/yyyy' }}</div>
+                        </td>
+
+                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+                            <button class="bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-medium py-1 px-3 rounded-md transition duration-300">Editar</button>
+                            <button class="bg-red-500 hover:bg-red-600 text-white text-sm font-medium py-1 px-3 rounded-md transition duration-300">Excluir</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    } @else {
+        <div class="m-auto">
+            <h1 class="text-pink-600 text-7xl flex flex-col m-auto">Nenhum usuário encontrado <span class="m-auto">⛅ ☔ 🌈 🌂 ⛄</span></h1>
+        </div>
+    }
+</div>

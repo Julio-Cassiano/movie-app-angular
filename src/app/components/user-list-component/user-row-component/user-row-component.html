@@ -1,0 +1,20 @@
+<td class="px-6 py-4 whitespace-nowrap">
+    <div class="text-sm font-medium text-gray-900">{{ user().name }}</div>
+</td>
+
+<td class="px-6 py-4 whitespace-nowrap">
+    <div class="text-sm text-gray-700">{{ user().username }}</div>
+</td>
+
+<td class="px-6 py-4 whitespace-nowrap">
+    <div class="text-sm text-gray-700">{{ user().email }}</div>
+</td>
+
+<td class="px-6 py-4 whitespace-nowrap">
+    <div class="text-sm text-gray-700">{{ user().birthDate | date: 'dd/MM/yyyy' }}</div>
+</td>
+
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
+    <button buttonEdit (click)="editUser(user())"></button>
+    <button buttonDelete></button>
+</td>

@@ -1,0 +1,38 @@
+<div class="bg-black/90 fixed top-0 left-0 w-full h-screen" (click)="onCloseDialog()"></div>
+<dialog open class="w-7/10 max-w-lg bg-white rounded-xl border-none overflow-hidden p-4 top-20 shadow-[0_1px_6px_rgba(0,0,0,0.4)] m-auto">
+
+  <h1 class="m-0 text-black font-semibold text-2xl">Add User</h1>
+  <button type="button" class="absolute top-1 right-0.5" (click)="onCloseDialog()">&times;</button>
+
+  <form> 
+    <p>
+      <label for="name">Nome</label>
+      <input type="text" id="name" name="name" />
+    </p>
+
+    <p>
+      <label for="username">Nome de usuário</label>
+      <input type="text" id="username" name="username" />
+    </p>
+
+    <p>
+      <label for="due-date">E-mail</label>
+      <input type="text" id="email" name="email" />
+    </p>
+
+    <p>
+      <label for="due-date">Data de nascimento</label>
+      <input type="date" id="birthDate" name="birthDate" />
+    </p>
+    
+    <p>
+      <label for="due-date">Senha</label>
+      <input type="text" id="password" name="password" />
+    </p>
+
+    <p class="actions">
+      <button type="button" (click)="onCloseDialog()">Cancelar</button>
+      <button type="submit">Criar</button>
+    </p>
+  </form>
+</dialog>

@@ -3,7 +3,7 @@
 
     <nav class="flex gap-10" id="nav">
         @for(link of links(); track link.id){
-            <a href="#"
+            <a [href]="link.path"
             [id]="link.id" 
             (click)="linkFocus(link.id)"
             class="border-b-2"

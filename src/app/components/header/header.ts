@@ -9,9 +9,9 @@ import { NgClass } from '@angular/common';
 })
 export class Header {
 
-  public links = signal<{name: string, id: string}[]>([
-    {name: "Usuários", id: "users"},
-    {name: "Filmes", id: "movies"}
+  public links = signal<{name: string, id: string, path:string}[]>([
+    {name: "Usuários", id: "users", path:"/users"},
+    {name: "Filmes", id: "movies", path:"/movies"}
   ]);
 
   public activeLink = signal('users');

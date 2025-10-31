@@ -4,30 +4,30 @@
   <h1 class="m-0 text-black font-semibold text-2xl">Add User</h1>
   <button type="button" class="absolute top-1 right-0.5" (click)="onCloseDialog()">&times;</button>
 
-  <form> 
+  <form (submit)="sendEditedData()"> 
     <p>
       <label for="name">Nome</label>
-      <input type="text" id="name" name="name" />
+      <input type="text" id="name" name="name" [(ngModel)]="editedUser.name"/>
     </p>
 
     <p>
       <label for="username">Nome de usuário</label>
-      <input type="text" id="username" name="username" />
+      <input type="text" id="username" name="username" [(ngModel)]="editedUser.username"/>
     </p>
 
     <p>
       <label for="due-date">E-mail</label>
-      <input type="text" id="email" name="email" />
+      <input type="text" id="email" name="email" [(ngModel)]="editedUser.email"/>
     </p>
 
     <p>
       <label for="due-date">Data de nascimento</label>
-      <input type="date" id="birthDate" name="birthDate" />
+      <input type="date" id="birthDate" name="birthDate" [(ngModel)]="editedUser.birthDate"/>
     </p>
     
     <p>
       <label for="due-date">Senha</label>
-      <input type="text" id="password" name="password" />
+      <input type="text" id="password" name="password" [(ngModel)]="editedUser.password"/>
     </p>
 
     <p class="actions">

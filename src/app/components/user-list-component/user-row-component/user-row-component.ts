@@ -20,7 +20,6 @@ export class UserRowComponent {
   }
 
   editUser(user: UserModel) {
-    this.userService.openEditModal();
     this.userService.editUser(user);
   }
 }

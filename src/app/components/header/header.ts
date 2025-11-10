@@ -1,9 +1,10 @@
-import { Component, signal } from '@angular/core';
 import { NgClass } from '@angular/common';
+import { Component, signal } from '@angular/core';
+import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
   selector: 'app-header',
-  imports: [NgClass],
+  imports: [NgClass, RouterLink, RouterLinkActive],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
@@ -13,10 +14,4 @@ export class Header {
     {name: "Usuários", id: "users", path:"/users"},
     {name: "Filmes", id: "movies", path:"/movies"}
   ]);
-
-  public activeLink = signal('users');
-
-  public linkFocus(linkId: string): void {
-      this.activeLink.set(linkId);
-  }
 }

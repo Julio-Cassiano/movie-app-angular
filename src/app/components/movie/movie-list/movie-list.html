@@ -1,0 +1,15 @@
+<div class="flex flex-col p-8">
+    <div class="flex justify-between mb-12">
+        <h1 class="text-shadow-neutral-900 font-medium text-2xl md:text-3xl lg:text-4xl">Gerenciamento de filmes</h1>
+        <button buttonAdd content="Adicionar filme"></button>
+    </div>
+    @if(movies().length > 0){
+        @for(movie of movies(); track movie.id) {
+            <app-movie-card [movie]="movie"/>
+        }
+    } @else {
+        <div class="m-auto">
+            <h1 class="text-pink-600 text-7xl flex flex-col m-auto">Nenhum filme encontrado <span class="m-auto">⛅ ☔ 🌈 🌂 ⛄</span></h1>
+        </div>
+    }
+</div>

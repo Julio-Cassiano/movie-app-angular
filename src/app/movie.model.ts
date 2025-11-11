@@ -2,9 +2,19 @@ export type MovieModel = {
     id: number,
     name: string,
     synopsis: string,
-    release_date: string,
-    duration_in_seconds: number,
-    image_path: string,
+    releaseDate: string,
+    durationInSeconds: number,
+    imagePath: string,
     username: string,
-    director_names: string[]
+    directorNames: string[]
+}
+
+export type CreatingMovie = {
+    name: string,
+    synopsis: string,
+    releaseDate: string,
+    durationInSeconds: number,
+    imagePath: string,
+    username: string,
+    directorNames: string[]
 }

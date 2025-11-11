@@ -30,7 +30,6 @@ export class EditUserDialogComponent implements OnInit {
 
     if(currentUserData) {
       this.editedUser = {...currentUserData, password: ''};
-
     }
   }
 
@@ -39,6 +38,14 @@ export class EditUserDialogComponent implements OnInit {
   }
 
   sendEditedData() {
-    console.log("dados alterados: ", this.editedUser);
+    this.userService.sendEditedUser(this.initialUserData()!.id, this.editedUser)
+      .subscribe({
+        next: (userFromApi) => {
+          console.log('deu certo', userFromApi);
+        },
+        error: (err) => {
+          console.log("porra", err);
+        }
+      })
   }
 }

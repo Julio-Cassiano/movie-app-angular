@@ -7,7 +7,6 @@ export type UserModel = {
 }
 
 export type CreatingUser = {
-    id?: string,
     name?: string,
     username?: string,
     email?: string,

@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { computed, Injectable, signal } from "@angular/core";
 import { CreatingUser, UserModel } from "../user.model";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class UserService {
     private _isAddingOrEditingUser = signal<boolean>(false);
     public isAddingOrEditingUser = computed(() => this._isAddingOrEditingUser);
 
-    private _creatingOrEditingUser = signal<CreatingUser | null>(null);
-    public creatingOrEditingUser = computed(() => this._creatingOrEditingUser());
+    private _editedUser = signal<CreatingUser | null>(null);
+    public editedUser = computed(() => this._editedUser());
 
     private _editingUser = signal<UserModel | undefined>(undefined);
     public editingUser = computed(() => this._editingUser);
@@ -52,4 +53,8 @@ export class UserService {
     public closeEditModal(): void {
         this._isAddingOrEditingUser.set(false);
     }
+
+    public sendEditedUser(id: string, user: CreatingUser): Observable<CreatingUser> {
+        return this.httpClient.patch<CreatingUser>(`${this.apiUrl}/${id}`, user);
+    }   
 }

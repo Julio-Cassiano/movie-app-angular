@@ -13,11 +13,13 @@ import { EditMovieDialog } from '../edit-movie-dialog/edit-movie-dialog';
 })
 export class MovieList implements OnInit {
   public movies: Signal<MovieModel[]>;
-  public isAddingOrEditingMovie: Signal<boolean>;
+  public isEditingMovie: Signal<boolean>;
+  public isAddingMovie: Signal<boolean>;
   
   constructor(private movieService: MovieService){
     this.movies = this.movieService.movies;
-    this.isAddingOrEditingMovie = this.movieService.isAddingOrEditingMovie();
+    this.isEditingMovie = this.movieService.isEditingMovie();
+    this.isAddingMovie = movieService.isAddinMovie();
   }
 
   ngOnInit(): void {
@@ -26,5 +28,9 @@ export class MovieList implements OnInit {
 
   public refreshMovies(): void {
     this.movieService.refreshMovies();
+  }
+
+  public createMovie() {
+    this.movieService.createMovie();
   }
 }

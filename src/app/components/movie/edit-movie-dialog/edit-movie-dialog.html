@@ -1,43 +1,48 @@
 <div class="bg-black/90 fixed top-0 left-0 w-full h-screen" (click)="onCloseDialog()"></div>
 <dialog open class="w-7/10 max-w-lg bg-white rounded-xl border-none overflow-hidden p-4 top-20 shadow-[0_1px_6px_rgba(0,0,0,0.4)] m-auto">
 
-  <h1 class="m-0 text-black font-semibold text-2xl">Add Movie</h1>
+  <h1 class="m-0 text-black font-semibold text-2xl">{{ create_movie() ? 'Adicionar filme' : 'Editar filme'}}</h1>
   <button type="button" class="absolute top-1 right-0.5" (click)="onCloseDialog()">&times;</button>
 
-  <form (submit)="sendEditedData()"> 
+  <form (submit)="(!create_movie()) ? sendEditedData() : sendNewMovie()">
+    <p>
+      <label for="username">Nome de usuário</label>
+      <input type="text" id="username" name="username" [(ngModel)]="movieData.username"/>
+    </p>
+  
     <p>
       <label for="name">Nome</label>
-      <input type="text" id="name" name="name" [(ngModel)]="editedMovie.name"/>
+      <input type="text" id="name" name="name" [(ngModel)]="movieData.name"/>
     </p>
 
     <p>
       <label for="synopsis">Sinopse</label>
-      <textarea rows="3" id="synopsis" name="synopsis" [(ngModel)]="editedMovie.synopsis"></textarea>
+      <textarea rows="3" id="synopsis" name="synopsis" [(ngModel)]="movieData.synopsis"></textarea>
     </p>
 
     <p>
       <label for="due-date">Data de lançamento</label>
-      <input type="date" id="releaseDate" name="releaseDate" [(ngModel)]="editedMovie.releaseDate"/>
+      <input type="date" id="releaseDate" name="releaseDate" [(ngModel)]="movieData.releaseDate"/>
     </p>
 
     <p>
       <label for="durationInSeconds">Duração em segundos</label>
-      <input type="number" id="durationInSeconds" name="durationInSeconds" [(ngModel)]="editedMovie.durationInSeconds"/>
+      <input type="number" id="durationInSeconds" name="durationInSeconds" [(ngModel)]="movieData.durationInSeconds"/>
     </p>
 
     <p>
       <label for="imagePath">Link da imagem</label>
-      <input type="text" id="imagePath" name="imagePath" [(ngModel)]="editedMovie.imagePath"/>
+      <input type="text" id="imagePath" name="imagePath" [(ngModel)]="movieData.imagePath"/>
     </p>
 
     <p>
       <label for="release-date">Diretor</label>
-      <input type="text" id="diretor" name="diretor" [(ngModel)]="editedMovie.directorNames"/>
+      <input type="text" id="diretor" name="diretor" [(ngModel)]="directorInput"/>
     </p>
 
     <p class="actions">
       <button type="button" (click)="onCloseDialog()">Cancelar</button>
-      <button type="submit">Criar</button>
+      <button type="submit">{{ create_movie() ? 'Criar' : 'Editar' }}</button>
     </p>
   </form>
 </dialog>

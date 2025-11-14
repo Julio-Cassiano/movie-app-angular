@@ -17,6 +17,19 @@ export class MovieCard {
   constructor(private movieService: MovieService){}
 
   editMovie(movie: MovieModel) {
-    this.movieService.editUser(movie);
+    this.movieService.editMovie(movie);
+  }
+
+  deleteMovie(id: number){
+    this.movieService.deleteMovie(id)
+      .subscribe({
+        next: () => {
+          console.log('deletado');
+          this.movieService.refreshMovies();
+        },
+        error: (err) => {
+          console.log('erro: ', err);
+        }
+      });
   }
 }

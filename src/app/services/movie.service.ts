@@ -1,5 +1,5 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { CreatingMovie, MovieModel } from '../movie.model';
+import { CreatingOrEditingMovie, MovieModel } from '../movie.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -12,10 +12,13 @@ export class MovieService {
   private _movies = signal<MovieModel[]>([]);
   public movies = computed(() => this._movies());
 
-  private _isAddingOrEditingMovie = signal<boolean>(false);
-  public isAddingOrEditingMovie = computed(() => this._isAddingOrEditingMovie);
+  private _isEditingMovie = signal<boolean>(false);
+  public isEditingMovie = computed(() => this._isEditingMovie);
 
-  private _editedMovie= signal<CreatingMovie | null>(null);
+  private _isAddingMovie = signal<boolean>(false);
+  public isAddinMovie = computed(() => this._isAddingMovie);
+
+  private _editedMovie= signal<CreatingOrEditingMovie | null>(null);
   public editedMovie = computed(() => this._editedMovie());
 
   private _editingMovie= signal<MovieModel | undefined>(undefined);
@@ -41,20 +44,30 @@ export class MovieService {
           })
   }
 
-  public editUser(movie: MovieModel){
+  public editMovie(movie: MovieModel){
       this._editingMovie.set(movie);
-      this.openEditModal();
-  }
-
-  public openEditModal(): void {
-      this._isAddingOrEditingMovie.set(true);
+      this._isEditingMovie.set(true);
   }
 
   public closeEditModal(): void {
-      this._isAddingOrEditingMovie.set(false);
+      this._editingMovie.set(undefined);
+      this._isEditingMovie.set(false);
+      this._isAddingMovie.set(false);
   }
 
-  public sendEditedMovie(id: number, user: CreatingMovie): Observable<CreatingMovie> {
-      return this.httpClient.patch<CreatingMovie>(`${this.apiUrl}/${id}`, user);
-  }   
+  public sendEditedMovie(id: number, movie: CreatingOrEditingMovie): Observable<CreatingOrEditingMovie> {
+      return this.httpClient.patch<CreatingOrEditingMovie>(`${this.apiUrl}/${id}`, movie);
+  }
+  
+  public createMovie() {
+    this._isAddingMovie.set(true);
+  }
+
+  public sendNewMovie(movie: CreatingOrEditingMovie) {
+    return this.httpClient.post<CreatingOrEditingMovie>(this.apiUrl, movie);
+  }
+
+  public deleteMovie(id: number) {
+    return this.httpClient.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

@@ -9,12 +9,12 @@ export type MovieModel = {
     directorNames: string[]
 }
 
-export type CreatingMovie = {
+export type CreatingOrEditingMovie = {
     name: string,
     synopsis: string,
     releaseDate: string,
     durationInSeconds: number,
     imagePath: string,
-    username: string,
+    username:string,
     directorNames: string[]
 }

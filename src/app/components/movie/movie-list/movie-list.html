@@ -1,10 +1,13 @@
-@if(isAddingOrEditingMovie()){
+@if(isEditingMovie()){
     <app-edit-movie-dialog/>
+}
+@if(isAddingMovie()){
+    <app-edit-movie-dialog [create_movie]="true"/>
 }
 <div class="flex flex-col p-8">
     <div class="flex justify-between mb-12">
         <h1 class="text-shadow-neutral-900 font-medium text-2xl md:text-3xl lg:text-4xl">Gerenciamento de filmes</h1>
-        <button buttonAdd content="Adicionar filme"></button>
+        <button class="cursor-pointer" buttonAdd content="Adicionar filme" (click)="createMovie()"></button>
     </div>
 
     <div class="grid grid-cols-1 m-auto md:grid-cols-2 lg:grid-cols-3 gap-10">

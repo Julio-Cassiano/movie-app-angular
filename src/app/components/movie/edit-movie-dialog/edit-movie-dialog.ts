@@ -1,5 +1,5 @@
-import { Component, OnInit, Signal } from '@angular/core';
-import { CreatingMovie, MovieModel } from '../../../movie.model';
+import { Component, input, OnInit, Signal } from '@angular/core';
+import { CreatingOrEditingMovie, MovieModel } from '../../../movie.model';
 import { MovieService } from '../../../services/movie.service';
 import { FormsModule } from '@angular/forms';
 
@@ -10,15 +10,30 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './edit-movie-dialog.css'
 })
 export class EditMovieDialog implements OnInit{
-  public editedMovie!: CreatingMovie;
   private initialMovieData: Signal<MovieModel | undefined>;
+  public movieData!: CreatingOrEditingMovie;
+
+  create_movie = input<boolean>(false);
 
   constructor(private movieService: MovieService){
     this.initialMovieData = movieService.editingMovie();
   }
 
+  get directorInput() {
+    return this.movieData.directorNames.join(', ');
+  }
+
+  set directorInput(value: string) {
+    if (value === '') {
+      this.movieData.directorNames = []
+      return;
+    }
+
+    this.movieData.directorNames = value.split(', ').map(name => name.trim()).filter(name => name.length > 0);
+  }
+
   ngOnInit(): void {
-    this.editedMovie= {
+    this.movieData= {
       name: '',
       synopsis: '',
       releaseDate: '',
@@ -31,7 +46,7 @@ export class EditMovieDialog implements OnInit{
     const currentMovieData = this.initialMovieData();
 
     if(currentMovieData) {
-      this.editedMovie = {...currentMovieData};
+      this.movieData = {...currentMovieData};
     }
   }
 
@@ -40,13 +55,27 @@ export class EditMovieDialog implements OnInit{
   }
 
   sendEditedData() {
-    this.movieService.sendEditedMovie(this.initialMovieData()!.id, this.editedMovie)
+    this.movieService.sendEditedMovie(this.initialMovieData()!.id, this.movieData)
       .subscribe({
-        next: (movieFromApi) => {
+        next: () => {
           this.movieService.refreshMovies();
         },
         error: (err) => {
-          console.log("porra", err);
+          console.log("erro: ", err);
+        }
+      })
+
+      this.onCloseDialog();
+  }
+
+  sendNewMovie() {
+    this.movieService.sendNewMovie(this.movieData)
+      .subscribe({
+        next: () => {
+          this.movieService.refreshMovies();
+        },
+        error: (err) => {
+          console.log("erro: ", err)
         }
       })
 

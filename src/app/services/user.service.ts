@@ -19,7 +19,7 @@ export class UserService {
     private _editingUser = signal<UserModel | undefined>(undefined);
     public editingUser = computed(() => this._editingUser);
     
-    private apiUrl = 'http://localhost:8081/users';
+    private apiUrl = 'http://localhost:8080/users';
 
     constructor(private httpClient: HttpClient){}
 

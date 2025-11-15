@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MovieService {
-  private apiUrl = 'http://localhost:8081/movies';
+  private apiUrl = 'http://localhost:8080/movies';
 
   private _movies = signal<MovieModel[]>([]);
   public movies = computed(() => this._movies());

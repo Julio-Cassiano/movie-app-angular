@@ -35,4 +35,15 @@ export class UserListComponent implements OnInit {
     this.userService.createUser();
   }
 
+  onDeleteUser(id: string) {
+    this.userService.deleteUser(id)
+      .subscribe({
+        next: () => {
+          this.userService.refreshUserSignal(id);
+        },
+        error: (err) => {
+          console.log('erro: ', err);
+        }
+      });
+  }
 }

@@ -67,7 +67,13 @@ export class UserService {
         return this.httpClient.post<CreatingOrEditingUser>(this.apiUrl, user);
     }
 
-    public deleteMovie(id: string) {
+    public deleteUser(id: string) {
         return this.httpClient.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  public refreshUserSignal(id: string) {
+    this._users.update(users => 
+      users.filter(user => user.id != id)
+    );
   }
 }

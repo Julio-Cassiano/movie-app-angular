@@ -70,4 +70,10 @@ export class MovieService {
   public deleteMovie(id: number) {
     return this.httpClient.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+  public refreshMovieSignal(id: number) {
+    this._movies.update(movies => 
+      movies.filter(movie => movie.id != id)
+    );
+  }
 }

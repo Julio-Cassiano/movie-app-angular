@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { MovieModel } from '../../../movie.model';
 import { DatePipe } from '@angular/common';
 import { ButtonEdit } from "../../shared/button-edit/button-edit";
@@ -13,23 +13,14 @@ import { ButtonDelete } from '../../shared/button-delete/button-delete';
 })
 export class MovieCard {
   movie = input.required<MovieModel>();
+  @Output() deleteMovie = new EventEmitter<number>();
+  @Output() editMovie = new EventEmitter<MovieModel>();
 
-  constructor(private movieService: MovieService){}
-
-  editMovie(movie: MovieModel) {
-    this.movieService.editMovie(movie);
+  onEdit() {
+    this.editMovie.emit(this.movie());
   }
 
-  deleteMovie(id: number){
-    this.movieService.deleteMovie(id)
-      .subscribe({
-        next: () => {
-          console.log('deletado');
-          this.movieService.refreshMovies();
-        },
-        error: (err) => {
-          console.log('erro: ', err);
-        }
-      });
+  onDelete(){
+    this.deleteMovie.emit(this.movie().id);
   }
 }

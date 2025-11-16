@@ -1,4 +1,4 @@
-import { Component, input, Signal } from '@angular/core';
+import { Component, EventEmitter, input, Output, Signal } from '@angular/core';
 import { UserModel } from '../../../user.model';
 import { UserService } from '../../../services/user.service';
 import { DatePipe } from '@angular/common';
@@ -13,13 +13,15 @@ import { ButtonEdit } from '../../shared/button-edit/button-edit';
 })
 export class UserRowComponent {
   user = input.required<UserModel>();
-  public isEditingUser: Signal<boolean>;
+  @Output() deleteUser = new EventEmitter<string>();
 
-  constructor(private userService: UserService) {
-    this.isEditingUser = this.userService.isEditingUser();
-  }
+  constructor(private userService: UserService) {}
 
   editUser(user: UserModel) {
     this.userService.editUser(user);
+  }
+
+  onDelete() {
+    this.deleteUser.emit(this.user().id);
   }
 }

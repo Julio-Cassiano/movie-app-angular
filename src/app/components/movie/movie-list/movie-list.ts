@@ -33,4 +33,20 @@ export class MovieList implements OnInit {
   public createMovie() {
     this.movieService.createMovie();
   }
+
+  public onDelete(id: number) {
+    this.movieService.deleteMovie(id)
+      .subscribe({
+        next: () => {
+          this.movieService.refreshMovieSignal(id);
+        },
+        error: (err) => {
+          console.log('erro: ', err);
+        }
+      });
+  }
+
+  public onEdit(movie: MovieModel) {
+    this.movieService.editMovie(movie);
+  }
 }

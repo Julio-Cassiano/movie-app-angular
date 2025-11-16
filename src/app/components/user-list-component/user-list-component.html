@@ -24,7 +24,7 @@
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
                 @for(user of users(); track user.id){
-                    <tr userRow [user]="user" class="hover:bg-gray-100"></tr>
+                    <tr userRow [user]="user" (deleteUser)="onDeleteUser($event)" class="hover:bg-gray-100"></tr>
                 }
             </tbody>
         </table>

@@ -13,10 +13,10 @@ import { ButtonEdit } from '../../shared/button-edit/button-edit';
 })
 export class UserRowComponent {
   user = input.required<UserModel>();
-  public isAddingOrEditingUser: Signal<boolean>;
+  public isEditingUser: Signal<boolean>;
 
   constructor(private userService: UserService) {
-    this.isAddingOrEditingUser = this.userService.isAddingOrEditingUser();
+    this.isEditingUser = this.userService.isEditingUser();
   }
 
   editUser(user: UserModel) {

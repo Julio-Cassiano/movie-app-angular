@@ -5,7 +5,7 @@ import { MovieList } from './components/movie/movie-list/movie-list';
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: '/users',
+        redirectTo: '/movies',
         pathMatch: 'full',
     }, 
 

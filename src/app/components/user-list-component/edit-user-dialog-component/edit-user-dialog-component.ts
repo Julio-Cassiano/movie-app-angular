@@ -1,6 +1,6 @@
-import { Component, OnInit, Signal } from '@angular/core';
+import { Component, input, OnInit, Signal } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { CreatingUser, UserModel } from '../../../user.model';
+import { CreatingOrEditingUser, UserModel } from '../../../user.model';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,15 +10,17 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './edit-user-dialog-component.css'
 })
 export class EditUserDialogComponent implements OnInit {
-  public editedUser!: CreatingUser;
   private initialUserData: Signal<UserModel | undefined>;
+  public userData!: CreatingOrEditingUser;
+
+  creatingUser = input<boolean | undefined>();
 
   constructor(private userService: UserService){
     this.initialUserData = userService.editingUser();
   }
 
   ngOnInit(): void {
-    this.editedUser = {
+    this.userData = {
         name: '', 
         username: '',
         email: '',
@@ -29,7 +31,7 @@ export class EditUserDialogComponent implements OnInit {
     const currentUserData = this.initialUserData();
 
     if(currentUserData) {
-      this.editedUser = {...currentUserData, password: ''};
+      this.userData = {...currentUserData, password: ''};
     }
   }
 
@@ -38,14 +40,30 @@ export class EditUserDialogComponent implements OnInit {
   }
 
   sendEditedData() {
-    this.userService.sendEditedUser(this.initialUserData()!.id, this.editedUser)
+    this.userService.sendEditedUser(this.initialUserData()!.id, this.userData)
       .subscribe({
         next: (userFromApi) => {
-          console.log('deu certo', userFromApi);
+          this.userService.refreshUsers();
         },
         error: (err) => {
           console.log("porra", err);
         }
+      });
+
+      this.onCloseDialog();
+  }
+
+  sendNewUser() {
+    this.userService.sendNewUser(this.userData)
+      .subscribe({
+        next: () => {
+          this.userService.refreshUsers();
+        },
+        error: (err) => {
+          console.log("erro: ", err)
+        }
       })
+
+      this.onCloseDialog();
   }
 }

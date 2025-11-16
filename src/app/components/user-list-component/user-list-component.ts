@@ -14,11 +14,13 @@ import { UserRowComponent } from './user-row-component/user-row-component';
 
 export class UserListComponent implements OnInit {
   public users: Signal<UserModel[]>;
-  public isAddingOrEditingUser: Signal<boolean>;
+  public isEditingUser: Signal<boolean>;
+  public isCreatingUser: Signal<boolean>;
   
   constructor(private userService: UserService){
     this.users = this.userService.users;
-    this.isAddingOrEditingUser = this.userService.isAddingOrEditingUser();
+    this.isEditingUser = this.userService.isEditingUser();
+    this.isCreatingUser = userService.isCreatingUser();
   }
 
   ngOnInit(): void {
@@ -27,6 +29,10 @@ export class UserListComponent implements OnInit {
 
   public refreshUsers(): void {
     this.userService.refreshUsers();
+  }
+
+  public createUser() {
+    this.userService.createUser();
   }
 
 }

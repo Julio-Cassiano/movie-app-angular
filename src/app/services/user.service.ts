@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { computed, Injectable, signal } from "@angular/core";
-import { CreatingUser, UserModel } from "../user.model";
+import { CreatingOrEditingUser, UserModel } from "../user.model";
 import { Observable } from "rxjs";
 
 @Injectable({
@@ -10,10 +10,13 @@ export class UserService {
     private _users = signal<UserModel[]>([]);
     public users = computed(() => this._users());
 
-    private _isAddingOrEditingUser = signal<boolean>(false);
-    public isAddingOrEditingUser = computed(() => this._isAddingOrEditingUser);
+    private _isEditingUser = signal<boolean>(false);
+    public isEditingUser = computed(() => this._isEditingUser);
 
-    private _editedUser = signal<CreatingUser | null>(null);
+    private _isCreatingUser = signal<boolean>(false);
+    public isCreatingUser = computed(() => this._isCreatingUser);
+
+    private _editedUser = signal<CreatingOrEditingUser | null>(null);
     public editedUser = computed(() => this._editedUser());
 
     private _editingUser = signal<UserModel | undefined>(undefined);
@@ -43,18 +46,28 @@ export class UserService {
 
     public editUser(user: UserModel){
         this._editingUser.set(user);
-        this.openEditModal();
-    }
-
-    public openEditModal(): void {
-        this._isAddingOrEditingUser.set(true);
+        this._isEditingUser.set(true);
     }
 
     public closeEditModal(): void {
-        this._isAddingOrEditingUser.set(false);
+        this._editingUser.set(undefined);
+        this._isEditingUser.set(false);
+        this._isCreatingUser.set(false);
     }
 
-    public sendEditedUser(id: string, user: CreatingUser): Observable<CreatingUser> {
-        return this.httpClient.patch<CreatingUser>(`${this.apiUrl}/${id}`, user);
-    }   
+    public sendEditedUser(id: string, user: CreatingOrEditingUser): Observable<CreatingOrEditingUser> {
+        return this.httpClient.patch<CreatingOrEditingUser>(`${this.apiUrl}/${id}`, user);
+    }
+    
+    public createUser() {
+        this._isCreatingUser.set(true);
+    }
+
+    public sendNewUser(user: CreatingOrEditingUser) {
+        return this.httpClient.post<CreatingOrEditingUser>(this.apiUrl, user);
+    }
+
+    public deleteMovie(id: string) {
+        return this.httpClient.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

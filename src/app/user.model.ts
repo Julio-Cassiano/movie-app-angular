@@ -6,10 +6,10 @@ export type UserModel = {
     birthDate: string
 }
 
-export type CreatingUser = {
-    name?: string,
-    username?: string,
-    email?: string,
-    birthDate?: string,
-    password?: string
+export type CreatingOrEditingUser = {
+    name: string,
+    username: string,
+    email: string,
+    birthDate: string,
+    password: string
 }

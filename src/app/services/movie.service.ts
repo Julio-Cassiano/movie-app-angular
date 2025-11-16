@@ -16,7 +16,7 @@ export class MovieService {
   public isEditingMovie = computed(() => this._isEditingMovie);
 
   private _isAddingMovie = signal<boolean>(false);
-  public isAddinMovie = computed(() => this._isAddingMovie);
+  public isAddingMovie = computed(() => this._isAddingMovie);
 
   private _editedMovie= signal<CreatingOrEditingMovie | null>(null);
   public editedMovie = computed(() => this._editedMovie());

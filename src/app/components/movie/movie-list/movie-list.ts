@@ -19,7 +19,7 @@ export class MovieList implements OnInit {
   constructor(private movieService: MovieService){
     this.movies = this.movieService.movies;
     this.isEditingMovie = this.movieService.isEditingMovie();
-    this.isAddingMovie = movieService.isAddinMovie();
+    this.isAddingMovie = movieService.isAddingMovie();
   }
 
   ngOnInit(): void {

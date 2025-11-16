@@ -32,17 +32,16 @@ A aplicação é dividida em duas seces principais:
 
 ### Página de Gerenciamento de Filmes
 
-`<img width="1899" height="917" alt="image" src="https://github.com/user-attachments/assets/0f4de465-60a0-453d-962a-11ee6de7419e" />
-`
+<img width="1899" height="917" alt="image" src="https://github.com/user-attachments/assets/0f4de465-60a0-453d-962a-11ee6de7419e" />
+
 
 ### Página de Gerenciamento de Usuários
 
-`<img width="1918" height="916" alt="image" src="https://github.com/user-attachments/assets/d7f7967e-bb4d-4fcd-ad89-3b6a6cf0b051" />
-`
+<img width="1918" height="916" alt="image" src="https://github.com/user-attachments/assets/d7f7967e-bb4d-4fcd-ad89-3b6a6cf0b051" />
+
 ### Formulário de criação/edição de filmes
 
-`<img width="1899" height="916" alt="image" src="https://github.com/user-attachments/assets/266cfebe-54fd-451a-b7f0-fdbace3359f6" />
-`
+<img width="1899" height="916" alt="image" src="https://github.com/user-attachments/assets/266cfebe-54fd-451a-b7f0-fdbace3359f6" />
 
 ---
 

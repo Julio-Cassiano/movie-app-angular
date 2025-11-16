@@ -1,59 +1,76 @@
-# CrudApp
+# MovieApp
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.5.
 
-## Development server
+# Projeto Frontend - MovieApp (Angular)
 
-To start a local development server, run:
+Este projeto é a interface de usuário (frontend) para a aplicação de gerenciamento de filmes e usuários. Ele foi construído utilizando **Angular** e estilizado com **Tailwind CSS**.
 
-```bash
-ng serve
-```
+Esta aplicação consome a [API Backend (Spring Boot)](https://github.com/Julio-Cassiano/movie-app-spring) para realizar todas as operações de dados.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 🎨 Tecnologias Utilizadas
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+* **Angular**
+* **Tailwind CSS**
+* **TypeScript**
+* **Angular CLI**
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## ✨ Funcionalidades Principais
 
-```bash
-ng generate --help
-```
+A aplicação é dividida em duas seces principais:
 
-## Building
+* **Gerenciamento de Usuários:** Interface completa para Criar, Ler, Atualizar e Deletar (CRUD) usuários.
+* **Gerenciamento de Filmes:** Interface completa para Criar, Ler, Atualizar e Deletar (CRUD) filmes.
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## 🖼️ Telas da Aplicação
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Página de Gerenciamento de Filmes
 
-## Running unit tests
+`<img width="1899" height="917" alt="image" src="https://github.com/user-attachments/assets/0f4de465-60a0-453d-962a-11ee6de7419e" />
+`
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Página de Gerenciamento de Usuários
 
-```bash
-ng test
-```
+`<img width="1918" height="916" alt="image" src="https://github.com/user-attachments/assets/d7f7967e-bb4d-4fcd-ad89-3b6a6cf0b051" />
+`
+### Formulário de criação/edição de filmes
 
-## Running end-to-end tests
+`<img width="1899" height="916" alt="image" src="https://github.com/user-attachments/assets/266cfebe-54fd-451a-b7f0-fdbace3359f6" />
+`
 
-For end-to-end (e2e) testing, run:
+---
 
-```bash
-ng e2e
-```
+## 🚀 Como Executar o Projeto
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### Pré-requisitos
 
-## Additional Resources
+* **Node.js** (versão 18 ou superior)
+* **Angular CLI** (Instalado globalmente: `npm install -g @angular/cli`)
+* **API Backend:** O projeto backend deve estar em execução (normalmente em `http://localhost:8080`).
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Passo a Passo
+
+1.  **Clone o repositório:**
+
+2.  **Navegue até o diretório do projeto:**
+
+3.  **Instale as dependências:**
+    Este comando irá baixar todas as bibliotecas necessárias (como Angular e Tailwind) definidas no `package.json`.
+    ```bash
+    npm install
+    ```
+
+4.  **Execute a aplicação:**
+    Use o comando padrão do Angular CLI para iniciar o servidor de desenvolvimento.
+    ```bash
+    ng serve
+    ```
+
+5.  **Acesse no navegador:**
+    O servidor de desenvolvimento será iniciado em `http://localhost:4200`. O Angular monitorará os arquivos, e qualquer alteração no código recarregará o navegador automaticamente.
